@@ -8,51 +8,50 @@
              Title="Lands"
              x:Class="MyLands.Views.LandsPage">
     <ContentPage.Content>
-        <ScrollView BindingContext="{Binding Lands}">
-                <StackLayout>
-                    <Label Text="{Binding TestProp}"
-                           FontSize="Large"/>
-                <ListView 
+        <StackLayout BindingContext="{Binding Lands}">
+            <SearchBar Text="{Binding Filter}"
+                       Placeholder="Search..."
+                       SearchCommand="{Binding SearchCommand}"/>
+            <ListView 
                 HasUnevenRows="true" 
                 IsPullToRefreshEnabled="true"
                 IsRefreshing="{Binding IsRefreshing, Mode=TwoWay}"
-                ItemsSource="{Binding LandsList}"
+                ItemsSource="{Binding LandsCollection}"
                 SeparatorVisibility="None"
                 RefreshCommand="{Binding RefreshCommand}">
-                    <ListView.ItemTemplate>
-                        <DataTemplate>
-                            <ViewCell>
-                                <Grid>
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="Auto"/>
-                                        <ColumnDefinition Width="*"/>
-                                        <ColumnDefinition Width="Auto"/>
-                                    </Grid.ColumnDefinitions>
-                                    <StackLayout 
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                </Grid.ColumnDefinitions>
+                                <StackLayout 
                                         Grid.Column="1"
                                         VerticalOptions="Center">
-                                        <Label 
+                                    <Label 
                                             FontAttributes="Bold"
                                             FontSize="Medium" 
                                             Text="{Binding Name}"
                                             TextColor="Black">
-                                        </Label>
-                                        <Label 
+                                    </Label>
+                                    <Label 
                                             Text="{Binding Capital}"
                                             TextColor="Black">
-                                        </Label>
-                                    </StackLayout>
-                                    <Image 
+                                    </Label>
+                                </StackLayout>
+                                <Image 
                                         Grid.Column="2"
                                         HorizontalOptions="End" 
                                         Source="ic_chevron_right">
-                                    </Image>
-                                </Grid>
-                            </ViewCell>
-                        </DataTemplate>
-                    </ListView.ItemTemplate>
-                </ListView>
-            </StackLayout>
-        </ScrollView>
+                                </Image>
+                            </Grid>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
     </ContentPage.Content>
 </ContentPage>

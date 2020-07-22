@@ -2,6 +2,7 @@
 {
     using System.Collections.Generic;
     using System.Collections.ObjectModel;
+    using System.Linq;
     using System.Windows.Input;
     using GalaSoft.MvvmLight.Command;
     using Models;
@@ -14,29 +15,38 @@
         #endregion
 
         #region Attributes
-        private ObservableCollection<Land> landsList;
+        private ObservableCollection<Land> landsCollection;
+        private List<Land> landsList;
         private bool isRefreshing;
+        private string filter;
+        
         #endregion
 
         #region Properties
-        public ObservableCollection<Land> LandsList
+        public ObservableCollection<Land> LandsCollection
         {
-            get { return this.landsList; }
-            set { SetValue(ref this.landsList, value); }
+            get { return this.landsCollection; }
+            set { SetValue(ref this.landsCollection, value); }
         }
         public bool IsRefreshing
         {
             get { return this.isRefreshing; }
             set { SetValue(ref this.isRefreshing, value); }
         }
-        public string TestProp { get; set; }
+        public string Filter
+        {
+            get { return this.filter; }
+            set 
+            { 
+                SetValue(ref this.filter, value);
+                this.Search();
+            }
+        }
         #endregion
 
         #region Constructors
         public LandsViewModel()
         {
-            TestProp = "Hola Lula";
-
             // Start the api service
             this.apiService = new ApiService();
             // Load Lands
@@ -70,17 +80,33 @@
                 return;
             }
 
-            var list = (List<Land>)response.Result;
-            this.LandsList = new ObservableCollection<Land>(list);
+            this.landsList = (List<Land>)response.Result;
+            this.LandsCollection = new ObservableCollection<Land>(this.landsList);
             IsRefreshing = false;
             await Application.Current.MainPage.DisplayAlert("Conectado!", response.Message, "Accept");
+        }
+        private void Search()
+        {
+            if(string.IsNullOrEmpty(this.Filter))
+            {
+                this.LandsCollection = new ObservableCollection<Land>(this.landsList);
+            }
+            else
+            {
+                this.LandsCollection = new ObservableCollection<Land>(this.landsList.Where(l => l.Name.ToLower().Contains(this.Filter.ToLower()) ||
+                                                                                                l.Capital.ToLower().Contains(this.Filter.ToLower())));
+            }
         }
         #endregion
 
         #region Commands
-        public ICommand LoginCommand
+        public ICommand RefreshCommand
         {
             get { return new RelayCommand(LoadLands); }
+        }
+        public ICommand SearchCommand
+        {
+            get { return new RelayCommand(Search); }
         }
         #endregion
     }
