@@ -5,6 +5,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
              x:Class="MyLands.Views.CurrenciesPage"
+             IconImageSource="ic_action_monetization_on.png"
              BindingContext="{Binding Main, Source={StaticResource Locator}}"
              Title="Currencies">
     <ContentPage.Content>

@@ -5,11 +5,12 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
              x:Class="MyLands.Views.LandPage"
+             IconImageSource="ic_action_info.png"
              BindingContext="{Binding Main, Source={StaticResource Locator}}"
              Title="Information">
     <ContentPage.Content>
         <ScrollView BindingContext="{Binding Land}">
-            <StackLayout>
+            <StackLayout Padding="5">
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>

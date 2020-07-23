@@ -5,6 +5,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
              x:Class="MyLands.Views.TranslationsPage"
+             IconImageSource="ic_action_translate.png"
              BindingContext="{Binding Main, Source={StaticResource Locator}}"
              Title="Translations">
     <ContentPage.Content>

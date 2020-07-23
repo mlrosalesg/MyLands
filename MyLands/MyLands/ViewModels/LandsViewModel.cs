@@ -18,7 +18,6 @@
 
         #region Attributes
         private ObservableCollection<LandItemViewModel> landsCollection;
-        private List<Land> landsList;
         private bool isRefreshing;
         private string filter;
         
@@ -82,7 +81,7 @@
                 return;
             }
 
-            this.landsList = (List<Land>)response.Result;
+            MainViewModel.GetInstance().LandsList = (List<Land>)response.Result;
             this.LandsCollection = new ObservableCollection<LandItemViewModel>(this.ToLandItemViewModel());
             IsRefreshing = false;
             //await Application.Current.MainPage.DisplayAlert("Conectado!", response.Message, "Accept");
@@ -101,7 +100,7 @@
         }
         private IEnumerable<LandItemViewModel> ToLandItemViewModel()
         {
-            return this.landsList.Select(l => new LandItemViewModel
+            return MainViewModel.GetInstance().LandsList.Select(l => new LandItemViewModel
             {
                 Alpha2Code = l.Alpha2Code,
                 Alpha3Code = l.Alpha3Code,
@@ -145,6 +144,8 @@
     }
     public class LandItemViewModel : Land
     {
+        // This is needed because the method SelectLand needs to be in the Land class and not in the LandsViewModel,
+        // but we dont want to add methods to the Models themselves.
         #region Commands
         public ICommand SelectLandCommand
         {

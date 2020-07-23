@@ -6,7 +6,7 @@
              xmlns:tabs="clr-namespace:MyLands.Views"
              mc:Ignorable="d"
              x:Class="MyLands.Views.LandTabbedPage"
-             Title="Land">
+             Title="{Binding Main.Land.Land.Name, Source={StaticResource Locator}}">
     <TabbedPage.Children>
         <tabs:LandPage/>
         <tabs:BordersPage/>
