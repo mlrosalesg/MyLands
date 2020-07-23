@@ -12,12 +12,12 @@
         <StackLayout BindingContext="{Binding Land}"
                      Padding="5">
             <ListView ItemsSource="{Binding Borders}"
-                      RowHeight="50"
-                      SeparatorVisibility="None">
+                      SeparatorVisibility="None"
+                      HasUnevenRows="true">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
-                            <Grid>
+                            <Grid Margin="0,0,0,5">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="*"/>
                                     <ColumnDefinition Width="3*"/>

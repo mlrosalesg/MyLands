@@ -28,7 +28,7 @@
     public class Translations
     {
         [JsonProperty(PropertyName = "de")]
-        public string Germany { get; set; }
+        public string German { get; set; }
         [JsonProperty(PropertyName = "es")]
         public string Spanish { get; set; }
         [JsonProperty(PropertyName = "fr")]

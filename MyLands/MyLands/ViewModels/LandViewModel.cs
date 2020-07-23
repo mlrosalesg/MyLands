@@ -9,6 +9,10 @@
     {
         #region Properties
         public Land Land { get; set; }
+        public ObservableCollection<Currency> Currencies { get; set; }
+        public ObservableCollection<Language> Languages { get; set; }
+        public Translations Translations { get; set; }
+
         public ObservableCollection<Border> Borders
         {
             get { return this.borders; }
@@ -27,6 +31,9 @@
             this.Land = land;
             // Load Borders
             this.LoadBorders();
+            // Load other info
+            this.LoadInfo();
+  
         }
         #endregion
 
@@ -44,7 +51,12 @@
                 }
             }
 
-        } 
+        }
+        private void LoadInfo()
+        {
+            this.Currencies = new ObservableCollection<Currency>(this.Land.Currencies);
+            this.Languages = new ObservableCollection<Language>(this.Land.Languages);
+        }
         #endregion
 
     }
