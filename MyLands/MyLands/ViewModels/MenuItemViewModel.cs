@@ -3,7 +3,7 @@
     using GalaSoft.MvvmLight.Command;
     using System.Windows.Input;
     using Xamarin.Forms;
-    using MyLands.Views;
+    using Views;
     public class MenuItemViewModel
     {
         #region Properties
